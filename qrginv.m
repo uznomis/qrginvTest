@@ -1,0 +1,10 @@
+function qrginv = qrginv(B)
+[N,M] = size(B);
+[Q,R,P] = qr(B);
+% r = sum(any(abs(R)>1e-13,2));
+r = rank(R);
+R1 = R(1:r,:);
+R2 = ginv(R1);
+R3 = [R2 zeros(M,N-r)];
+A = P*R3*Q';
+qrginv = A;
