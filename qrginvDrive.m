@@ -1,12 +1,12 @@
 %% random singular matrices
 R = cell(1,5);
 exec_time1 = zeros(5,5);
-errors1 = zeros(5,4,5);
+errors1 = zeros(5,4,5); % method, metric, dataset
 ranks1 = zeros(1,5);
 conds1 = zeros(1,5);
 rconds1 = zeros(1,5);
 i = 0;
-for exp = 4:8
+for exp = 8:12
     i = i + 1;
     A = rand(2^exp);
     A(end,:) = mean(A(1:end-1,:));
