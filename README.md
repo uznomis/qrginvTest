@@ -1,6 +1,6 @@
 # qrginvTest
 A repo for testing qrginv function proposed by Katsikis et al
-Requires Higham’s Matrix Computation Toolbox
+Requires Higham’s Matrix Computation Toolbox added to path
 Paper title:
 An improved method for the computation of the Moore-Penrose
 inverse matrix
