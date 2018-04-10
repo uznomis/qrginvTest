@@ -45,6 +45,7 @@ disp('random matrices done');
 n = 200;
 nums = [4 8 13 19 24 30 41 49 52];
 R = cell(1,5);
+time100 = zeros(1,100);
 exec_time2 = zeros(5,9);
 errors2 = zeros(5,4,9);
 ranks2 = zeros(1,9);
@@ -56,25 +57,40 @@ for i = 1:length(nums)
     conds2(i) = cond(A);
     rconds2(i) = rcond(A);
     % pinv
-    tic
-    R{1} = pinv(A);
-    exec_time2(1,i) = toc;
+    for j = 1:100
+        tic
+        R{1} = pinv(A);
+        time100(j) = toc;
+    end
+    exec_time2(1,i) = mean(time100);
     % CGS
-    tic
-    R{2} = CGS_MPi(A);
-    exec_time2(2,i) = toc;
+    for j = 1:100
+        tic
+        R{2} = CGS_MPi(A);
+        time100(j) = toc;
+    end
+    exec_time2(2,i) = mean(time100);
     % geninv
-    tic
-    R{3} = geninv(A);
-    exec_time2(3,i) = toc;
+    for j = 1:100
+        tic
+        R{3} = geninv(A);
+        time100(j) = toc;
+    end
+    exec_time2(3,i) = mean(time100);
     % stan
-    tic
-    R{4} = stan(A);
-    exec_time2(4,i) = toc;
+    for j = 1:100
+        tic
+        R{4} = stan(A);
+        time100(j) = toc;
+    end
+    exec_time2(4,i) = mean(time100);
     % qrginv
-    tic
-    R{5} = qrginv(A);
-    exec_time2(5,i) = toc;
+    for j = 1:100
+        tic
+        R{5} = qrginv(A);
+        time100(j) = toc;
+    end
+    exec_time2(5,i) = mean(time100);
     for j = 1:5
         errors2(j,1,i) = norm(A*R{j}*A-A);
         errors2(j,2,i) = norm(R{j}*A*R{j}-R{j});

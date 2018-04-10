@@ -1,4 +1,7 @@
 % plot comparison
+%% constants
+methods = {'pinv','CGS-MPi','geninv','stan','qrginv'};
+criteria = {'TT+T-T','T+TT+-T+','TT+-(TT+)*','T+T-(T+T)*'};
 %% D1 time
 time0 = reshape(D1(:,1),5,[]);
 time = exec_time1;
@@ -6,6 +9,11 @@ figure('Name', 'D1 time');
 for i = 1:size(time,1)
     subplot(2,3,i);
     loglog(time0(i,:), time(i,:), '*');
+    title(methods{i});
+    xlabel('time(s)');
+    ylabel('time(s)');
+    xlim([1e-5 1e5]);
+    ylim([1e-5 1e5]);
 end
 
 %% D2 time
@@ -15,6 +23,13 @@ figure('Name', 'D2 time');
 for i = 1:size(time,1)
     subplot(2,3,i);
     loglog(time0(i,:), time(i,:), '*');
+    title(methods{i});
+    xlabel('time(s)');
+    ylabel('time(s)');
+    xl = xlim;
+    xlim([xl(1) xl(1)*1e1]);
+    yl = ylim;
+    ylim([yl(1) yl(1)*1e1]);
 end
 
 %% D3 time
